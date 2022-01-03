@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><style>
+        #navbar{
+            width: 100%;
+            height: 100px;
+            background-color: brown;
+            margin-top: 5px;
+        }
+        #signup{
+            color: black;
+            padding: 20px;
+            margin-left: 50%;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #login{
+            color: black;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        #menu{
+            color: black;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        #cart{
+            color: black;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <button id="signup">sign up</button>
+        <button id="login">Login</button>
+        <button onclick="" id="menu">Menu</button>
+        <button id="cart">Cart</button>
+    </div>
+    <div id="menu"></div>
+   
+</body>
+</html>
+<script>
+    let url="https://themealdb.com/api/json/v1/1/filter.php?c=Seafood"
+    let menu_div=document.getElementById("menu")
+    async function getusers(){
+        try{
+            let res=await fetch(url);
+            let data=await res.json();
+            let users=data;
+            appendusers(users);
+            console.log("users:",users);
+        }
+        catch(err){
+            console.log("err:",err)
+        }
+    }
+    getusers()
+       function appendusers(users){
+        let div=document.createElement("div");
+              let img=document.createElement("img");
+             img.src=users.strMealThumb;
+              let dish=document.createElement("p");
+             dish.innerText=users.strMeal;
+              div.append(img,dish);
+              menu_div.append(div);
+             
+     }
+           
+    
+</script>
